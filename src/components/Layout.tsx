@@ -1,5 +1,5 @@
 import { Outlet, NavLink } from 'react-router-dom';
-import { Package, ShoppingCart, Users, LogOut, Bell, Undo2 } from 'lucide-react';
+import { Package, ShoppingCart, Users, LogOut, Bell, Undo2, BarChart3 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 export default function Layout() {
@@ -18,6 +18,14 @@ export default function Layout() {
 
         <nav className="flex flex-col gap-2 flex-1 overflow-y-auto">
           <NavLink 
+            to="/" 
+            className={({ isActive }) => `flex items-center gap-3 p-3 rounded-xl transition-all duration-200 font-medium ${isActive ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`}
+          >
+            <BarChart3 size={20} />
+            <span>Dashboard</span>
+          </NavLink>
+
+          <NavLink 
             to="/punto-venta" 
             className={({ isActive }) => `flex items-center gap-3 p-3 rounded-xl transition-all duration-200 font-medium ${isActive ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`}
           >
@@ -26,7 +34,7 @@ export default function Layout() {
           </NavLink>
 
           <NavLink 
-            to="/" 
+            to="/inventario" 
             className={({ isActive }) => `flex items-center gap-3 p-3 rounded-xl transition-all duration-200 font-medium ${isActive ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`}
           >
             <Package size={20} />

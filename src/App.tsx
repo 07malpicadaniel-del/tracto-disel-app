@@ -4,8 +4,9 @@ import { supabase } from './lib/supabase';
 
 // Importación de componentes y páginas
 import Layout from './components/Layout';
-import InventarioPage from './pages/InventarioPage';
 import LoginPage from './pages/LoginPage';
+import DashboardPage from './pages/DashboardPage';
+import InventarioPage from './pages/InventarioPage';
 import PuntoVentaPage from './pages/PuntoVentaPage';
 import ClientesPage from './pages/ClientesPage';
 import AlertasPage from './pages/AlertasPage';
@@ -40,16 +41,22 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Ruta Pública */}
         <Route 
           path="/login" 
           element={!session ? <LoginPage /> : <Navigate to="/" />} 
         />
         
+        {/* Rutas Privadas Protegidas */}
         <Route 
           path="/" 
           element={session ? <Layout /> : <Navigate to="/login" />}
         >
-          <Route index element={<InventarioPage />} />
+          {/* El Dashboard es ahora la página de inicio */}
+          <Route index element={<DashboardPage />} />
+          
+          {/* Módulos del Sistema */}
+          <Route path="inventario" element={<InventarioPage />} />
           <Route path="punto-venta" element={<PuntoVentaPage />} />
           <Route path="clientes" element={<ClientesPage />} />
           <Route path="alertas" element={<AlertasPage />} />
